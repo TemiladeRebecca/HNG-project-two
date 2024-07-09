@@ -32,17 +32,18 @@ export default function HomePage() {
 
           <h2 className={classes.testimonials}>What our customers say</h2>
           <div className={classes.testimonial}>
-          <blockquote>
-            "These chairs are amazing! Comfortable, stylish, and perfect for my home office."
-          </blockquote>
+            <blockquote>
+              &ldquo;These chairs are amazing! Comfortable, stylish, and perfect for my home office.&rdquo;
+           </blockquote>
           <p>- Emily D.</p>
         </div>
         <div className={classes.testimonial}>
           <blockquote>
-            "I love the modern design of my new dining chairs. They exceeded my expectations!"
-          </blockquote>
-          <p>- Mark S.</p>
-        </div>
+          &ldquo;I love the modern design of my new dining chairs. They exceeded my expectations!&rdquo;
+        </blockquote>
+       <p>- Mark S.</p>
+      </div>
+
         </section>
       </main>
     </>
