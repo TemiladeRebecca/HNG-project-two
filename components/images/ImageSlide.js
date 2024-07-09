@@ -14,7 +14,7 @@ import fautelliDeTableImg from "@/public/images/imageslide/Fautelli-De-Table.jpg
 import ikeaImg from "@/public/images/imageslide/IKEA.jpg";
 import lacqueredSolidOakImg from "@/public/images/imageslide/Lacquered-Solid-Oak.jpg";
 import mahoganyImg from "@/public/images/imageslide/Mahogany.jpg";
-import oldWorldRevivalImg from "@/public/images/imageslide/old-world-Revival.jpg";
+import oldWorldRevivalImg from "@/public/images/imageslide/Old-world-Revival.jpg";
 import touchImg from "@/public/images/imageslide/Torch.jpg";
 
 const images = [
