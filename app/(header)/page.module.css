@@ -1,0 +1,88 @@
+.header {
+    display: flex;
+    gap: 3rem;
+    margin: 3rem auto;
+    width: 90%;
+    max-width: 75rem;
+  }
+  
+  .slideshow {
+    width: 40rem;
+    height: 25rem;
+  }
+  
+  .hero {
+    color: #ddd6cb;
+    font-size: 1.5rem;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #D56F3E, #ffc905);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero p{
+    color: #f9b241;
+  }
+
+  .hero a {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #ff9b05;
+    color: #181817;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 2rem;
+  }
+  
+  .hero a:hover {
+    background-color: #e5e5e1;
+  }
+  
+  
+  .section {
+    display: flex;
+    flex-direction: column;
+    color: #f9b241;
+    font-size: 1.5rem;
+    max-width: 50rem;
+    width: 90%;
+    margin: 2rem auto;
+    text-align: center;
+  }
+
+  .section a {
+    display: inline-block;
+    padding: 1rem 1rem;
+    background-color: #ff9b05;
+    color: #181817;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+  
+  .section a:hover {
+    background-color: #e5e5e1;
+  }
+
+  .testimonials {
+    text-align: center;
+  }
+
+  .testimonial {
+    margin-bottom: 10px;
+  }
+
+  .testimonial blockquote {
+    font-style: italic;
+    margin-bottom: 10px;
+  }

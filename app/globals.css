@@ -1,4 +1,4 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -29,5 +29,164 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Merriweather', serif;
+}
+
+body {
+  margin: 0;
+  background-color: white;
+  color: #F7F7F7;
+}
+
+#archive-filter {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #b0b0a6;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.15rem;
+  background: linear-gradient(90deg, #D56F3E, #ffc905);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header {
+  padding: 20px;
+}
+
+.image-container {
+  display: flex;
+  gap: 20px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+
+h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+p {
+  margin-top: 10px;
+}
+
+/* .checkout-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff9b05;
+  font-weight: bold;
+  color: #181817;;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-top: 2rem;
+}
+
+.checkout-link:hover {
+  background-color: #e5e5e1;
+}
+
+.cart-container {
+  display: flex;
+  gap: 20px;
+}
+
+.cart-image {
+  width: 50%;
+  height: auto;
+} */
+
+.cart-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%; 
+}
+
+.cart-image {
+  width: 100%;
+  height: auto; 
+  display: block;
+}
+
+.cart-container p {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  padding: 20px;
+  margin: 0;
+  width: 100%; 
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold; 
+}
+
+.checkout-link {
+  color: black; 
+  text-decoration: none; 
+  font-weight: bold;
+}
+
+.checkout-link:hover {
+  color: #D56F3E;
+}
+
+
+.checkout {
+  width: 100%;
+  text-align: center;
+}
+
+.checkout-header {
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 2rem;
+  margin-bottom: 10px;
+}
+
+.checkout-body {
+  width: 100%;
+  display: block;
+  padding: 2rem 2rem;
+}
+
+.latest {
+  margin-right: 2rem;
+  padding-left: 5rem;
+  color: #D56F3E;
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 57%;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 767px) {
+  html {
+    font-size: 60%;
   }
 }
