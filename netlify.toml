@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[cache]
+  # Cache dependencies using npm or yarn
+  paths = [
+    ".next/cache/**", # Assuming Next.js uses .next/cache for caching
+    "node_modules/**" # Cache node_modules directory
+  ]
