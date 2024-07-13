@@ -13,7 +13,7 @@
   
   .image {
     position: relative;
-    height: 20rem;
+    height: 22rem;
   }
   
   .product img {
@@ -24,6 +24,11 @@
     padding: 1rem;
     text-align: right;
   }
+@media (max-width: 600px) {
+  .image {
+    height: 12rem; /* Adjust the height as needed for smaller screens */
+  }
+}
   
   .actions a {
     display: inline-block;
