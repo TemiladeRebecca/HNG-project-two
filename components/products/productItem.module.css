@@ -13,11 +13,11 @@
   
   .image {
     position: relative;
-    height: 15rem;
+    height: 25rem;
   }
   
   .product img {
-    object-fit: contain;
+    object-fit: cover;
   }
   
   .actions {
