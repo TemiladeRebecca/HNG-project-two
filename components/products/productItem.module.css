@@ -13,7 +13,7 @@
   
   .image {
     position: relative;
-    height: 22rem;
+    height: 25rem;
   }
   
   .product img {
@@ -26,7 +26,7 @@
   }
 @media (max-width: 600px) {
   .image {
-    height: 12rem; /* Adjust the height as needed for smaller screens */
+    height: 15rem; /* Adjust the height as needed for smaller screens */
   }
 }
   
