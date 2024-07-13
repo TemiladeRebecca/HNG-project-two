@@ -17,20 +17,7 @@
   }
   
   .product img {
-    object-fit: cover;
-    /* width: 361px;
-    height: 361px; */
-  }
-
-  .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 50%;
-  }
-
-  .summary {
-    padding: 1rem 1rem 0 1rem;
+    object-fit: contain;
   }
   
   .actions {
