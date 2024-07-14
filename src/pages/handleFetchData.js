@@ -1,4 +1,4 @@
-export async function fetchProductsData() {
+export default async function fetchProductsData() {
     try {
         const response = await fetch('api/fetchProduct');
         if (!response.ok) {
