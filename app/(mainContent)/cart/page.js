@@ -2,26 +2,37 @@
 
 import { useEffect, useState } from 'react';
 import { useProductContext } from '@/src/context/ProductContext';
-import  fetchProductItem from '@/src/pages/handleFetchProduct';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function useCartItems(ProductIds) {
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+export default function useCartItems(product_id) {
   const { products } = useProductContext();
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    if (!ProductIds || ProductIds.length === 0) {
+    if (!product_id || product_id.length === 0) {
       setCartItems([]);
       return;
     }
     
     const fetchCartItems = async () => {
       try {
-        const filteredProducts = await fetchProductItem(ProductIds);
-        
-        // console.log(filteredProducts);
+        const response = await fetch(`${API_BASE_URL}/api/fetchProduct/${product_id}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
+        const getProducts = await response.json();
+
+        if (!getProducts || !getProducts.items) {
+          console.error('Invalid product data:', getProducts);
+          setCartItems([]);
+          return;
+        }
+        
+        const filteredProducts = getProducts.items;
         const cartData = {
           image: filteredProducts.photos.length > 0 ? filteredProducts.photos[0].url : '/default-image.jpg',
           price: filteredProducts.current_price ? filteredProducts.current_price : null,
@@ -35,7 +46,7 @@ export default function useCartItems(ProductIds) {
     };
 
     fetchCartItems();
-  }, [ProductIds, products]);
+  }, [product_id, products]);
 
   console.log(cartItems);
 

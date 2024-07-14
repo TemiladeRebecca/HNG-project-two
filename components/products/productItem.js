@@ -5,18 +5,22 @@ import Image from 'next/image';
 import Link from 'next/link';
 import classes from "./productItem.module.css";
 import useCartItems from '@/app/(mainContent)/cart/page';
-import fetchProductItem from '@/src/pages/handleFetchProduct';
+
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default function ProductItem({ id, name, url_slug, current_price, photos }) {
   const [cartProductIds, setCartProductIds] = useState([]);
   const cartItems = useCartItems(cartProductIds);
 
-  console.log(cartProductIds);
+  // console.log(cartProductIds);
 
-  const addToCart = async (productId) => {
+  const addToCart = async (product_id) => {
     try {
-      const product = await fetchProductItem(productId);
-      setCartProductIds((prevIds) => [...prevIds, product.id]);
+      fetch(`${API_BASE_URL}/api/fetchProduct/${product_id}`)
+        .then((res) => res.json())
+        .then(product => setCartProductIds((prevIds) => [...prevIds, product.id]))
+        .catch(error => console.error('Error fetching data:', error))
     } catch (error) {
       console.error('Error adding product to cart:', error);
     }

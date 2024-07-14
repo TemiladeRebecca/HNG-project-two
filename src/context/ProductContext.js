@@ -1,7 +1,6 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import fetchProductsData from '../pages/handleFetchData';
 
 const ProductContext = createContext();
 
@@ -13,8 +12,10 @@ export default function ProductProvider({ children }) {
   useEffect(() => {
     async function loadProducts() {
       try {
-        const fetchedProducts = await fetchProductsData();
-        setProducts(fetchedProducts.items);
+        fetch('http://localhost:3000/api/fetchProducts')
+          .then((res) => res.json())
+          .then(data => setProducts(data.items))
+          .catch(error => console.error('Error fetching data:', error));
       } catch (error) {
         setError(error);
       } finally {
