@@ -1,24 +1,41 @@
+'use client';
+
+import {useState} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import classes from "./productItem.module.css"
+import classes from "./productItem.module.css";
+import useCartItems from '@/app/(mainContent)/cart/page';
 
 
-export default function ProductItem ({url_slug, description, current_price, photos}) {
-  // const imageUrl = photos.length > 0 ? photos[0].url : '/default-image.jpg';
-    return <article className={classes.product}>
-    <header>
-      <div className={classes.image}>
-        <Link href={`/archive/${url_slug}`}>
-          <Image src={`https://api.timbu.cloud/images/${photos[0].url}`} alt={url_slug} fill />
-        </Link> 
-      </div>
-    </header>
+export default function ProductItem ({ id, name, url_slug, current_price, photos }) {
+  const [cartProductIds, setCartProductIds] = useState([]);
+  const cartItems = useCartItems(cartProductIds);
+
+
+  const addToCart = (productId) => {
+    setCartProductIds((prevIds) => [...prevIds, productId]);
+  };
+
+  const imageUrl = photos.length > 0 ? `https://api.timbu.cloud/images/${photos[0].url}` : '/default-image.jpg';
+
+  return (
+    <article className={classes.product}>
+      <header>
+        <div className={classes.image}>
+          <Link href={`/archive/${url_slug}`}>
+            <Image src={imageUrl} alt={url_slug} layout="fill" />
+          </Link>
+        </div>
+        <div className={classes.headerText}>
+          <h2>{name}</h2>
+          <p className={classes.summary}>{current_price ? current_price[0].NGN[0] : 'Price not available'}</p>
+        </div>
+      </header>
       <div className={classes.content}>
-        <p className={classes.summary}>{description}</p>
-        <p>{current_price[0].AUD}</p>
-      <div className={classes.actions}>
-        <Link href={`/cart/${url_slug}`}>Add to Cart</Link>
+        <div className={classes.actions}>
+          <button type="button" onClick={() => addToCart(id)}>Add to Cart</button>
+        </div>
       </div>
-      </div>
-  </article>
+    </article>
+  );
 }

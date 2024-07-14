@@ -21,6 +21,9 @@ export default function MainHeader() {
                 <Link href="/products" className={classes.navLink}>Products</Link>
               </li>
               <li className={classes.navItem}>
+                <Link href="/cart" className={classes.navLink}>Cart</Link>
+              </li>
+              <li className={classes.navItem}>
                 <Link href="/" className={classes.navLink}>About Us</Link>
               </li>
               <li className={classes.navItem}>
