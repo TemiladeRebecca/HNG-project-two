@@ -2,6 +2,7 @@
 const ORGANIZATION_ID = process.env.NEXT_PUBLIC_ORGANIZATION_ID;
 const APPID = process.env.NEXT_PUBLIC_APPID;
 const APIKEY = process.env.NEXT_PUBLIC_APIKEY;
+const URL = process.env.NEXT_PUBLIC_API_TIMBU_URL;
 
 export default async function handler(req, res) {
     const { product_id } = req.query;
@@ -10,7 +11,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Product ID is required' });
     }
 
-    const url = 'https://api.timbu.cloud/products';
+    const url = URL;
     const params = {
         organization_id: ORGANIZATION_ID,
         Appid: APPID,
