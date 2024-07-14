@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import classes from "./productItem.module.css";
 import useCartItems from '@/app/(mainContent)/cart/page';
-import { fetchProductItem } from '@/src/pages/handleFetchProduct';
+import fetchProductItem from '@/src/pages/handleFetchProduct';
 
 export default function ProductItem({ id, name, url_slug, current_price, photos }) {
   const [cartProductIds, setCartProductIds] = useState([]);
