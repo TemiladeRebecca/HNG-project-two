@@ -1,25 +1,32 @@
+'use client';
+
+import { useProductContext } from '@/src/context/ProductContext';
 import {notFound} from 'next/navigation';
-import Link from 'next/link';
-import { PRODUCTS_LIST } from "@/PRODUCTS";
 
 
-export default function ProductDetailPage({params}) {
-    const productSlug = params.productSlug;
-    const selectedProduct = PRODUCTS_LIST.find(productItem => productItem.slug === productSlug);
+export default function InterceptedImagePage({params}) {
+    const { products } = useProductContext();
+  
+  const productItemSlug = params.productSlug;
+  console.log(params);
+  const productItem = products.find(product => product.url_slug === productItemSlug)
 
-    if (!selectedProduct) {
-        notFound();
-    }
 
-    return (
-        <>
-          <header className="header">
-            <div className="image-container">
-              <Link href="/checkout">
-              <img className="image" src={`/images/product-description/${selectedProduct.description}`} alt={selectedProduct.slug} />
-              </Link>
-            </div>
-          </header>
-    </>
-    );
+  if (!productItem) {
+      notFound();
+  }
+
+  
+
+  return (
+      <>
+          <div className="header">
+              <div className='image-container'>
+                  {productItem && productItem.photos && productItem.photos.length > 0 && (
+                      <img className='image' src={`https://api.timbu.cloud/images/${productItem.photos[0].url}`} alt={productItem.url_slug} />
+                  )}
+              </div>
+          </div>  
+      </>
+  );
 }
