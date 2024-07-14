@@ -209,3 +209,18 @@ p {
     font-size: 60%;
   }
 }
+
+.error {
+  text-align: center;
+  margin-top: 3rem;
+  color: black;
+}
+
+.error h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.error p {
+  font-size: 1rem;
+}
