@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { fetchProductsData } from '@/src/pages/handleFetchData';
+import fetchProductsData from '../pages/handleFetchData';
 
 const ProductContext = createContext();
 

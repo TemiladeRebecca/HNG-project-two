@@ -1,3 +1,8 @@
+//
+const ORGANIZATION_ID = process.env.NEXT_PUBLIC_ORGANIZATION_ID;
+const APPID = process.env.NEXT_PUBLIC_APPID;
+const APIKEY = process.env.NEXT_PUBLIC_APIKEY;
+
 export default async function handler(req, res) {
     const { product_id } = req.query;
 
@@ -7,9 +12,9 @@ export default async function handler(req, res) {
 
     const url = 'https://api.timbu.cloud/products';
     const params = {
-        organization_id: 'baeef2ef705c4c299e76bf456f276e05',
-        Appid: 'RHP49RUX9ZORM8Z',
-        Apikey: '3198b6ff1a4141debb22334bc052c85620240712152758922490'
+        organization_id: ORGANIZATION_ID,
+        Appid: APPID,
+        Apikey: APIKEY
     };
 
     const queryString = new URLSearchParams(params).toString();

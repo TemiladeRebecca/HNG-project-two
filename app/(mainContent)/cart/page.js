@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useProductContext } from '@/src/context/ProductContext';
-import { fetchProductItem } from '@/src/pages/handleFetchData';
+import { fetchProductItem } from '@/src/pages/handleFetchProduct';
 import Link from 'next/link';
 import Image from 'next/image';
 
