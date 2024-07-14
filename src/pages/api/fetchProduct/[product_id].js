@@ -2,7 +2,7 @@
 const ORGANIZATION_ID = process.env.NEXT_PUBLIC_ORGANIZATION_ID;
 const APPID = process.env.NEXT_PUBLIC_APPID;
 const APIKEY = process.env.NEXT_PUBLIC_APIKEY;
-const URL = process.env.NEXT_PUBLIC_API_TIMBU_URL;
+const URL = process.env.NEXT_PUBLIC_API_SINGLE_PRODUCT_URL;
 
 export default async function handler(req, res) {
     const { product_id } = req.query;
@@ -21,7 +21,9 @@ export default async function handler(req, res) {
     const queryString = new URLSearchParams(params).toString();
 
     try {
-        const response = await fetch(`${url}/${product_id}?${queryString}`);
+        const response = await fetch(`${url}/${product_id}?${queryString}`, {
+            mode: 'no-cors'
+        });
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
