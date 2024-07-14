@@ -1,10 +1,12 @@
-'use client';
+'use client'
 
+import { useEffect, useState } from 'react';
 import { useProductContext } from '@/src/context/ProductContext';
+import { fetchProductItem } from '@/src/pages/handleFetchData';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
-export default function useCartItems({ ProductIds }) {
+export default function useCartItems(ProductIds) {
   const { products } = useProductContext();
   const [cartItems, setCartItems] = useState([]);
 
@@ -13,38 +15,53 @@ export default function useCartItems({ ProductIds }) {
       setCartItems([]);
       return;
     }
+    
+    const fetchCartItems = async () => {
+      try {
+        const filteredProducts = await fetchProductItem(ProductIds);
+        
+        // console.log(filteredProducts);
 
-    const filteredProducts = products.filter(product => ProductIds.includes(product.id));
-    const cartData = filteredProducts.map(productItem => ({
-      image: productItem.photos.length > 0 ? productItem.photos[0].url : '/default-image.jpg',
-      price: productItem.current_price ? productItem.current_price[0].AUD[0] : null,
-      id: productItem.id,
-      slug: productItem.url_slug,
-    }));
+        const cartData = {
+          image: filteredProducts.photos.length > 0 ? filteredProducts.photos[0].url : '/default-image.jpg',
+          price: filteredProducts.current_price ? filteredProducts.current_price : null,
+          id: filteredProducts.id,
+          slug: filteredProducts.url_slug,
+        };
+        setCartItems([cartData]);
+      } catch (error) {
+        console.error('Error fetching cart items:', error);
+      }
+    };
 
-    setCartItems(cartData);
+    fetchCartItems();
   }, [ProductIds, products]);
+
+  console.log(cartItems);
 
   return (
     <div>
       {cartItems.length > 0 ? (
-        <ul className="cartContainer">
-          {cartItems.map(item => (
-            <li key={item.id}>
-              <img src={`https://api.timbu.cloud/images/${item.image}`} alt={item.slug} />
-              <p>{item.price ? `Price: ${item.price}` : 'Price not available'}</p>
-              <p>
-                <Link className="checkout-link" href="/checkout">Make Order</Link>
-              </p>
-            </li>
-          ))}
-        </ul>
+        <div className='cartContainer'>
+          <Image
+            src={`https://api.timbu.cloud/images/${cartItems.image}`}
+            alt={cartItems.slug}
+            width={150} 
+            height={150} 
+            priority
+          />
+          <p>{cartItems.price ? `Price: ${item.price}` : 'Price not available'}</p>
+          <p>
+            <Link className='checkoutLink' href="/checkout">Make Order</Link>
+          </p>
+        </div>
       ) : (
         <div className='cartEmpty'>
-          <h2>No Item in the Cart</h2>
-          <Link href="/products" className='cartLink'>Order Now</Link>
+        <h2>No Item in the Cart</h2>
+        <Link href="/products" className='cartLink'>Order Now</Link>
         </div>
       )}
     </div>
   );
-}
+};
+

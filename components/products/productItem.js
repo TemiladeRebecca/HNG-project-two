@@ -1,19 +1,25 @@
 'use client';
 
-import {useState} from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import classes from "./productItem.module.css";
 import useCartItems from '@/app/(mainContent)/cart/page';
+import { fetchProductItem } from '@/src/pages/handleFetchData';
 
-
-export default function ProductItem ({ id, name, url_slug, current_price, photos }) {
+export default function ProductItem({ id, name, url_slug, current_price, photos }) {
   const [cartProductIds, setCartProductIds] = useState([]);
   const cartItems = useCartItems(cartProductIds);
 
+  console.log(cartProductIds);
 
-  const addToCart = (productId) => {
-    setCartProductIds((prevIds) => [...prevIds, productId]);
+  const addToCart = async (productId) => {
+    try {
+      const product = await fetchProductItem(productId);
+      setCartProductIds((prevIds) => [...prevIds, product.id]);
+    } catch (error) {
+      console.error('Error adding product to cart:', error);
+    }
   };
 
   const imageUrl = photos.length > 0 ? `https://api.timbu.cloud/images/${photos[0].url}` : '/default-image.jpg';
@@ -23,7 +29,13 @@ export default function ProductItem ({ id, name, url_slug, current_price, photos
       <header>
         <div className={classes.image}>
           <Link href={`/archive/${url_slug}`}>
-            <Image src={imageUrl} alt={url_slug} layout="fill" />
+            <Image
+              src={imageUrl}
+              alt={url_slug}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority
+            />
           </Link>
         </div>
         <div className={classes.headerText}>

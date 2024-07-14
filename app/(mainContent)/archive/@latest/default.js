@@ -4,8 +4,8 @@ import ProductList from '@/components/products/productList';
 import { useProductContext } from '@/src/context/ProductContext';
 
 
-export default function getLatestProducts() {
-  const {products} = useProductContext()
+export default function GetLatestProducts() {
+  const {products} = useProductContext();
 
   const getShuffledProducts = () => {
     const shuffledProducts = [...products];
@@ -19,7 +19,10 @@ export default function getLatestProducts() {
   const latestProducts = getShuffledProducts();
 
   return (
+    <>
+    <h2 className='latest'>Customers Also Viewed</h2>
     <ProductList products={latestProducts}/>
+      </>
   );
 }
 

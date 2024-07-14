@@ -53,6 +53,7 @@ export default function ImageSlideshow() {
           src={image.image}
           className={index === currentImageIndex ? classes.active : ""}
           alt={image.alt}
+          priority
         />
       ))}
     </div>

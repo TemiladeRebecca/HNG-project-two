@@ -27,7 +27,7 @@ export default function ProductProvider({ children }) {
 
   useEffect(() => {
     // This will log the products state whenever it updates
-    console.log(products);
+    // console.log(products);
   }, [products]);
 
   return (

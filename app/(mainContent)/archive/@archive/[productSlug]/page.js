@@ -2,6 +2,7 @@
 
 import { useProductContext } from '@/src/context/ProductContext';
 import {notFound} from 'next/navigation';
+import Image from 'next/image';
 
 
 export default function InterceptedImagePage({params}) {
@@ -23,7 +24,10 @@ export default function InterceptedImagePage({params}) {
           <div className="header">
               <div className='image-container'>
                   {productItem && productItem.photos && productItem.photos.length > 0 && (
-                      <img className='image' src={`https://api.timbu.cloud/images/${productItem.photos[0].url}`} alt={productItem.url_slug} />
+                      <Image className='image' src={`https://api.timbu.cloud/images/${productItem.photos[0].url}`}
+                       alt={productItem.url_slug}
+                        fill
+                        priority/>
                   )}
               </div>
           </div>  
