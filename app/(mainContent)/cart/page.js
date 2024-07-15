@@ -16,6 +16,9 @@ export default function useCartItems(product_id) {
       setCartItems([]);
       return;
     }
+
+    const id = Array.isArray(product_id) ? product_id[0] : product_id;
+    console.log('product_id:', id);
     
     const fetchCartItems = async () => {
       try {
@@ -26,13 +29,13 @@ export default function useCartItems(product_id) {
 
         const getProducts = await response.json();
 
-        if (!getProducts || !getProducts.items) {
-          console.error('Invalid product data:', getProducts);
-          setCartItems([]);
-          return;
-        }
+        // if (!getProducts || !getProducts.items) {
+        //   console.error('Invalid product data:', getProducts);
+        //   setCartItems([]);
+        //   return;
+        // }
         
-        const filteredProducts = getProducts.items;
+        const filteredProducts = getProducts;
         const cartData = {
           image: filteredProducts.photos.length > 0 ? filteredProducts.photos[0].url : '/default-image.jpg',
           price: filteredProducts.current_price ? filteredProducts.current_price : null,
