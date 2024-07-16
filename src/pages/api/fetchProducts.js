@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     const queryString = new URLSearchParams(params).toString();
 
     try {
-        const response = await fetch(`${url}/products?${queryString}`, {
+        const response = await fetch(`${url}?${queryString}`, {
             mode: 'no-cors'
         });
         if (!response.ok) {
