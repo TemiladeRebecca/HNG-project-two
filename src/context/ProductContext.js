@@ -1,5 +1,3 @@
-'use client';
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const ProductContext = createContext();
@@ -14,10 +12,12 @@ export default function ProductProvider({ children }) {
   useEffect(() => {
     async function loadProducts() {
       try {
-        fetch(`${API_BASE_URL}/api/fetchProducts`)
-          .then((res) => res.json())
-          .then(data => setProducts(data.items))
-          .catch(error => console.error('Error fetching data:', error));
+        const response = await fetch(`${API_BASE_URL}/api/fetchProducts`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const data = await response.json();
+        setProducts(data.items);
       } catch (error) {
         setError(error);
       } finally {
@@ -29,7 +29,7 @@ export default function ProductProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    // This will log the products state whenever it updates
+    // Optional: Log products state changes
     // console.log(products);
   }, [products]);
 
@@ -38,6 +38,6 @@ export default function ProductProvider({ children }) {
       {children}
     </ProductContext.Provider>
   );
-};
+}
 
 export const useProductContext = () => useContext(ProductContext);

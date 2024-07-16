@@ -9,7 +9,7 @@ export default function InterceptedImagePage({params}) {
     const { products } = useProductContext();
   
   const productItemSlug = params.productSlug;
-  console.log(params);
+  
   const productItem = products.find(product => product.url_slug === productItemSlug)
 
 
