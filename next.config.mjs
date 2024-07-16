@@ -18,6 +18,15 @@ const nextConfig = {
     NEXT_PUBLIC_APIKEY: process.env.NEXT_PUBLIC_APIKEY,
     NEXT_PUBLIC_API_TIMBU_URL: process.env.NEXT_PUBLIC_API_TIMBU_URL,
   },
+
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${process.env.NEXT_PUBLIC_API_BASE_URL}/:path*`, // Proxy to Backend
+      },
+    ];
+  },
 };
 
 export default nextConfig;
