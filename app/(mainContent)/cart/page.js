@@ -18,16 +18,17 @@ export default function useCartItems(product_id) {
     }
 
     const id = Array.isArray(product_id) ? product_id[0] : product_id;
-    console.log('product_id:', id);
+  
     
     const fetchCartItems = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/fetchProduct/${product_id}`);
+        const response = await fetch(`${API_BASE_URL}/api/fetchProduct/${id}`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const getProducts = await response.json();
+
 
         // if (!getProducts || !getProducts.items) {
         //   console.error('Invalid product data:', getProducts);
@@ -51,7 +52,11 @@ export default function useCartItems(product_id) {
     fetchCartItems();
   }, [product_id, products]);
 
-  console.log(cartItems);
+
+ const cartItem = cartItems[0];
+
+ console.log(cartItem);
+
 
   return (
     <div>

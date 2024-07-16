@@ -10,16 +10,16 @@ import useCartItems from '@/app/(mainContent)/cart/page';
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default function ProductItem({ id, name, url_slug, current_price, photos }) {
-  const [cartProductIds, setCartProductIds] = useState([]);
-  const cartItems = useCartItems(cartProductIds);
+  const [cartProductId, setCartProductId] = useState(null);
 
-  // console.log(cartProductIds);
+  const cartItems = useCartItems(cartProductId)
+
 
   const addToCart = async (product_id) => {
     try {
       fetch(`${API_BASE_URL}/api/fetchProduct/${product_id}`)
         .then((res) => res.json())
-        .then(product => setCartProductIds((prevIds) => [...prevIds, product.id]))
+        .then(product => setCartProductId(product.id))
         .catch(error => console.error('Error fetching data:', error))
     } catch (error) {
       console.error('Error adding product to cart:', error);
@@ -29,6 +29,7 @@ export default function ProductItem({ id, name, url_slug, current_price, photos 
   const imageUrl = photos.length > 0 ? `https://api.timbu.cloud/images/${photos[0].url}` : '/default-image.jpg';
 
   return (
+    <>
     <article className={classes.product}>
       <header>
         <div className={classes.image}>
@@ -53,5 +54,6 @@ export default function ProductItem({ id, name, url_slug, current_price, photos 
         </div>
       </div>
     </article>
+    </>
   );
 }
