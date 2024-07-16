@@ -4,6 +4,8 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const ProductContext = createContext();
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 export default function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +14,7 @@ export default function ProductProvider({ children }) {
   useEffect(() => {
     async function loadProducts() {
       try {
-        fetch('http://localhost:3000/api/fetchProducts')
+        fetch(`${API_BASE_URL}/api/fetchProducts`)
           .then((res) => res.json())
           .then(data => setProducts(data.items))
           .catch(error => console.error('Error fetching data:', error));
