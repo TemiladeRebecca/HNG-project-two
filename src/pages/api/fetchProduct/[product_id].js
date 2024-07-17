@@ -6,7 +6,6 @@ const URL = process.env.NEXT_PUBLIC_API_TIMBU_URL;
 
 export default async function handler(req, res) {
     const { product_id } = req.query;
-    console.log('product id:', product_id);
 
     if (!product_id) {
         return res.status(400).json({ error: 'Product ID is required' });
