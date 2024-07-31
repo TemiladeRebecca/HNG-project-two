@@ -66,15 +66,19 @@ h1 {
 }
 
 /* archive image */
-.header {
-  padding: 20px;
-}
-
-.image-container {
+.selectedProduct {
   display: flex;
+  border-radius: 4px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  color: #ddd6cb;
 }
 
-.image-container img {
+.selectedProductDiv {
+  position: relative;
+  width: 100%
+}
+
+.selectedProduct img {
   object-fit: cover;
 }
 /* end */

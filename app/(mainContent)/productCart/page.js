@@ -1,45 +1,42 @@
-// import Link from 'next/link';
-// import Image from 'next/image';
+'use client'
 
-export default function CartContainer({cartItems}) {
+import { useCart } from "@/src/context/ProductContext";
+import Image from 'next/image';
+import Link from 'next/link';
 
-  console.log('cart:', cartItems); 
+export default function CartContainer() {
+    
+    const { cartItems } = useCart();
 
-  // if (cartItems) {
-  //   const { cartItemId, cartItemImage, cartItemDescription, cartItemSlug } = cartItems;
-  // }
-
-  return<div><h2>Hello Cart!</h2></div>
-
-};
-
-  // return (
-  //   <div>
-  //     {cartItems.length > 0 ? (
-  //       <div className='cartContainer'>
-  //         <Image
-  //           src={`https://api.timbu.cloud/images/${cartItems.cartItemImage}`}
-  //           alt={cartItems.cartItemSlug}
-  //           width={150} 
-  //           height={150} 
-  //           priority
-  //         />
-  //         <p>{cartItems.cartItemDescription}</p>
-  //         <p>{cartItems.cartItemPrice ? `Price: ${i}` : 'Price not available'}</p>
-  //         <p>
-  //           <Link className='checkoutLink' href="/checkout">Make Order</Link>
-  //         </p>
-  //       </div>
-  //     ) : (
-  //       <div className='cartEmpty'>
-  //       <h2>No Item in the Cart</h2>
-  //       <Link href="/products" className='cartLink'>Order Now</Link>
-  //       </div>
-  //     )}
-  //   </div>
-  // );
-
-
-
-
-  
+    return(
+        <>
+            {cartItems ? (cartItems.map((item) => (
+        <ul>
+            <li>
+                <article>
+                    <header>
+                        <div>
+                            <Image
+                                src={ `https://api.timbu.cloud/images/${item.cartItemImage}`}
+                                alt={item.cartItemSlug}
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                priority
+                            />
+                            </div>
+                            <p>{item.cartItemPrice}</p>
+                            <p>{item.description}</p>
+                            </header>
+      
+                        </article>
+                    </li>
+                </ul>
+                    ))) : (
+                <div className="cartEmpty">
+                    <h2>Your Cart is Empty</h2>
+                    <Link className='cartLink' href='/products'>Start Shopping</Link>
+                </div>
+            )}
+        </>
+    );
+}

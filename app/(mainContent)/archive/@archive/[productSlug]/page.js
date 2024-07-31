@@ -21,13 +21,15 @@ export default function InterceptedImagePage({params}) {
 
   return (
       <>
-          <div className="header">
-              <div className='image-container'>
+          <div className='selectedProduct'>
+              <div className='selectedProductDiv'>
                   {productItem && productItem.photos && productItem.photos.length > 0 && (
-                      <Image className='image' src={`https://api.timbu.cloud/images/${productItem.photos[0].url}`}
+                      <Image src={`https://api.timbu.cloud/images/${productItem.photos[0].url}`}
                        alt={productItem.url_slug}
-                        fill
-                        priority/>
+                       fill
+                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                       priority
+                        />
                   )}
               </div>
           </div>  

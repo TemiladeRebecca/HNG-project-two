@@ -19,24 +19,6 @@ const nextConfig = {
     NEXT_PUBLIC_API_TIMBU_URL: process.env.NEXT_PUBLIC_API_TIMBU_URL,
   },
 
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: '/api/:path*',
-  //       destination: `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/:path*`, // Proxy to Backend
-  //     },
-  //   ];
-  // },
 };
 
 export default nextConfig;
-
-
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   images: {
-//     domains: ['api.timbu.cloud'],
-//   },
-// };
-
-// export default nextConfig;
