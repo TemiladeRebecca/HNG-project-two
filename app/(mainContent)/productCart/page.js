@@ -12,7 +12,7 @@ export default function CartContainer() {
         <>
             {cartItems ? (cartItems.map((item) => (
         <ul>
-            <li>
+            <li key={item.cartItemId}>
                 <article>
                     <header>
                         <div>
