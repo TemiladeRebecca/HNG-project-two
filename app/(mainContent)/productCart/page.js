@@ -11,8 +11,8 @@ export default function CartContainer() {
     return(
         <>
             {cartItems ? (cartItems.map((item) => (
-        <ul>
-            <li key={item.cartItemId}>
+        <ul key={item.cartItemId}>
+            <li>
                 <article>
                     <header>
                         <div>
